@@ -11,7 +11,7 @@
 
     $resultado = mysqli_query(
         $conexion, 
-        "SELECT * FROM usuarios" #la consulta SQL
+        "SELECT * FROM usuarios WHERE correo='$email' "
     );
 
     $cantidadDeRegistros = mysqli_num_rows($resultado);

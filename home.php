@@ -26,6 +26,23 @@
     for ($i=0; $i < $cantidadDeRegistros; $i++) { 
         $transacciones[] = mysqli_fetch_assoc($resultado);
     }
+
+    $resultado = mysqli_query(
+        $conexion, 
+        "SELECT SUM(monto) as ingreso FROM transacciones WHERE usuario='$id_del_usuario' AND tipo='Ingreso' "
+    );
+
+    $ingresos = mysqli_fetch_assoc($resultado);
+
+    $resultado = mysqli_query(
+        $conexion, 
+        "SELECT SUM(monto) as egreso FROM transacciones WHERE usuario='$id_del_usuario' AND tipo='Egreso' "
+    );
+
+    $egresos = mysqli_fetch_assoc($resultado);
+
+
+    $saldo = $ingresos['ingreso'] - $egresos['egreso'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,12 +54,36 @@
     <link rel="stylesheet" href="bootstrap.css">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Banco Gratis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Cerrar Sesión</a>
+        </li>
+      </ul>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+
     <div class="container">
-        <div class="row">
+        <div class="row pt-3">
             <div class="col-md-12">
-                <h1>Home</h1>
-                <h4>Bienvenido <?php echo $_SESSION['nombre']?></h4>
-                <a href="logout.php">Cerrar Sesión</a>
+                <h3>
+                    Tu saldo es de $ <?php echo number_format($saldo, 2) ?>
+                </h3>
 
                 <table class="table table-striped">
                     <thead>

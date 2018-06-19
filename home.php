@@ -69,9 +69,9 @@
           <a class="nav-link" href="logout.php">Cerrar Sesión</a>
         </li>
       </ul>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline" action="pin.php">
+        <input class="form-control mr-sm-2" name="monto" type="text" placeholder="Monto">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Generar PIN</button>
       </form>
     </div>
   </nav>

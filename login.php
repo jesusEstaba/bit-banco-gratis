@@ -27,6 +27,7 @@
         if ($datos[0]['clave'] == $password) {
             session_start();
             $_SESSION['nombre'] = $datos[0]['nombre'];
+            $_SESSION['id'] = $datos[0]['id'];
             header('Location: home.php');
         } else {
             echo "contraseña equi";

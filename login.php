@@ -25,7 +25,9 @@
 
     if (count($datos)) {
         if ($datos[0]['clave'] == $password) {
-            echo "PUEDES PASAR FRODO";
+            session_start();
+            $_SESSION['nombre'] = $datos[0]['nombre'];
+            header('Location: home.php');
         } else {
             echo "contraseña equi";
         }

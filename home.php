@@ -23,7 +23,7 @@
     
     $transacciones = [];
     
-    for ($i=0; $i <= $cantidadDeRegistros; $i++) { 
+    for ($i=0; $i < $cantidadDeRegistros; $i++) { 
         $transacciones[] = mysqli_fetch_assoc($resultado);
     }
 ?>
@@ -55,7 +55,15 @@
                         <?php foreach( $transacciones as $transaccion ): ?>
                             <tr>
                                 <td><?php echo $transaccion['monto'] ?></td>
-                                <td><?php echo $transaccion['tipo'] ?></td>
+                                <td>
+                                    <?php 
+                                        if ($transaccion['tipo'] == 'Ingreso') {
+                                            echo '<span class="badge badge-success">Ingreso</span>';
+                                        } else {
+                                            echo '<span class="badge badge-danger">Egreso</span>';
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

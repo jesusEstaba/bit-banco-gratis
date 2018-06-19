@@ -54,7 +54,7 @@
                     <tbody>
                         <?php foreach( $transacciones as $transaccion ): ?>
                             <tr>
-                                <td><?php echo $transaccion['monto'] ?></td>
+                                <td>$ <?php echo number_format($transaccion['monto'], 2) ?></td>
                                 <td>
                                     <?php 
                                         if ($transaccion['tipo'] == 'Ingreso') {

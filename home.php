@@ -20,6 +20,7 @@
             <div class="col-md-12">
                 <h1>Home</h1>
                 <h4>Bienvenido <?php echo $_SESSION['nombre']?></h4>
+                <a href="logout.php">Cerrar Sesión</a>
             </div>
         </div>
     </div>
